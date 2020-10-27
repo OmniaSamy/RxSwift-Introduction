@@ -38,5 +38,27 @@ You can have multiple Observers listening to an Observable. When the Observable 
    ```
    In the result just show Printed!
    
-
-
+ * BehaviorSubjects
+   ```swift
+   let disposeBag = DisposeBag()
+   let subject = BehaviorSubject<String>(value: "Initial value")
+  
+   subject.onNext("Not printed!")
+   subject.onNext("Not printed!")
+   subject.onNext("Printed!")
+  
+   subject
+    .subscribe(onNext: { text in
+      print(text)
+    }).addDisposableTo(disposeBag)
+  
+   subject.onNext("Printed one!")
+   subject.onNext("Printed two!")
+   ```
+   In the result show <br />
+   Printed! <br />
+   Printed one! <br />
+   Printed two!
+   
+   
+   
