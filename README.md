@@ -22,3 +22,21 @@ You can have multiple Observers listening to an Observable. When the Observable 
   - **BehaviorSubject:** Starts with an initial value and replays it or the latest element to new subscribers.
   - **ReplaySubject:** Initialized with a buffer size and will maintain a buffer of elements up to that size and replay it to new subscribers.
   - **Variable:** Wraps a BehaviorSubject, preserves its current value as state, and replays only the latest/initial value to new subscribers.
+  
+ ## Example
+ * PublishSubject
+   ```swift
+   let disposeBag = DisposeBag()
+   let pubSubject = PublishSubject<String>()
+   pubSubject.onNext("Ignored...")
+  
+   pubSubject.subscribe(onNext: { text in
+       print(text)
+    }).addDisposableTo(disposeBag)
+    
+   pubSubject.onNext("Printed!")
+   ```
+   In the result just show Printed!
+   
+
+
