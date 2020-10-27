@@ -107,3 +107,5 @@ You can have multiple Observers listening to an Observable. When the Observable 
    Third String <br />
    
    
+ ## Example subjects with handel response
+ 
