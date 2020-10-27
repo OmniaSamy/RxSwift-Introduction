@@ -32,7 +32,7 @@ You can have multiple Observers listening to an Observable. When the Observable 
   
    pubSubject.subscribe(onNext: { text in
        print(text)
-    }).addDisposableTo(disposeBag)
+    }).disposed(by: disposeBag)
     
    pubSubject.onNext("Printed!")
    ```
@@ -47,10 +47,9 @@ You can have multiple Observers listening to an Observable. When the Observable 
    subject.onNext("Not printed!")
    subject.onNext("Printed!")
   
-   subject
-    .subscribe(onNext: { text in
-      print(text)
-    }).addDisposableTo(disposeBag)
+   subject.subscribe(onNext: { text in
+       print(text)
+    }).disposed(by: disposeBag)
   
    subject.onNext("Printed one!")
    subject.onNext("Printed two!")
@@ -60,5 +59,29 @@ You can have multiple Observers listening to an Observable. When the Observable 
    Printed one! <br />
    Printed two!
    
+ * ReplaySubjects
+   ```swift
+   let disposeBag = DisposeBag()
+   let subject = ReplaySubject<String>.create(bufferSize: 3)
+   subject.onNext("Not printed!")
+   subject.onNext("Printed!")
+   subject.onNext("Printed!")
+   subject.onNext("Printed!")
+  
+   subject.subscribe(onNext: { text in
+       print(text)
+    }).disposed(by: disposeBag)
+  
+   subject.onNext("Printed end!")
+   ```  
+   In the result show <br />
+   Printed! <br />
+   Printed! <br />
+   Printed! <br />
+   Printed end! <br />
    
-   
+   * BehaviorRelay (Variable)
+     ```swift
+     
+     ```  
+     
