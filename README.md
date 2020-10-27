@@ -14,3 +14,11 @@ You can have multiple Observers listening to an Observable. When the Observable 
 * The DisposeBag is an additional tool RxSwift provides to help deal with ARC and memory management.
 * When deinit() is called on the object that holds the DisposeBag, each disposable Observer is automatically unsubscribed from what it was observing. This allows ARC to take back memory as it normally would.
 * Without a DisposeBag, you’d get one of two results. Either the Observer would create a retain cycle, hanging on to what it’s observing indefinitely, or it could be deallocated, causing a crash.
+
+## Subjects
+* Subjects act as both an observable and an observer. They can receive events and also be subscribed to.
+* There are 4 subject types in RxSwift:
+  - **PublishSubject:** Starts empty and only emits new elements to subscribers.
+  - **BehaviorSubject:** Starts with an initial value and replays it or the latest element to new subscribers.
+  - **ReplaySubject:** Initialized with a buffer size and will maintain a buffer of elements up to that size and replay it to new subscribers.
+  - **Variable:** Wraps a BehaviorSubject, preserves its current value as state, and replays only the latest/initial value to new subscribers.
