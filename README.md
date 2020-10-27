@@ -9,3 +9,8 @@ You can achieve this in Swift through Key-Value Observation and using didSet, bu
 * An Observer subscribes to an Observable and gets notified when that Observable has changed.
 
 You can have multiple Observers listening to an Observable. When the Observable changes, it will notify all its Observers.
+
+## DisposeBag
+* The DisposeBag is an additional tool RxSwift provides to help deal with ARC and memory management.
+* When deinit() is called on the object that holds the DisposeBag, each disposable Observer is automatically unsubscribed from what it was observing. This allows ARC to take back memory as it normally would.
+* Without a DisposeBag, you’d get one of two results. Either the Observer would create a retain cycle, hanging on to what it’s observing indefinitely, or it could be deallocated, causing a crash.
