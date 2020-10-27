@@ -80,8 +80,8 @@ You can have multiple Observers listening to an Observable. When the Observable 
    Printed! <br />
    Printed end! <br />
    
-   * BehaviorRelay (Variable)
-     ```swift
+ * BehaviorRelay (Variable)
+   ```swift
      
-     ```  
+   ```  
      
