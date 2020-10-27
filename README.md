@@ -110,5 +110,22 @@ You can have multiple Observers listening to an Observable. When the Observable 
  ## Example subjects with handel response
  ```swift
  
+  enum response<T: Codable> {
+    case next(data: T)
+    case error(error: customError)
+ }
+
+ var pubSubject = PublishSubject<response<String>>()
+ 
+ self.pubSubject.onNext(.error(error: error))
+ self.pubSubject.onNext(.next(data: "omnia"))
+ 
+ viewModel.pubSubject.subscribe(onNext: { text in
+       switch text {
+          case .next(data: let data):
+              print("from switch \(data)")
+          case .error(error: let error):
+              print("from switch \(error)")
+         }}).disposed(by: disposeBag)
  ```  
  
