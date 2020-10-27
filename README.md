@@ -82,6 +82,26 @@ You can have multiple Observers listening to an Observable. When the Observable 
    
  * BehaviorRelay (Variable)
    ```swift
-     
+   let disposeBag = DisposeBag()
+   let behRelay = BehaviorRelay(value: "Current String")
+        
+    /// Getting the value
+    print(behRelay.value)
+        
+    /// Setting the value
+    behRelay.accept("Second String")
+        
+    /// Observing the value
+    behRelay.asObservable().subscribe(onNext: { text in
+            print(text)
+      }).disposed(by: disposeBag)
+        
+    behRelay.accept("Third String")
    ```  
-     
+   In the result show <br />
+
+   Current String <br />
+   Second String <br />
+   Third String <br />
+   
+   
